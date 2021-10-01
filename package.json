@@ -1,0 +1,36 @@
+{
+  "name": "nordsoen-oceanarium-formidling-langs-kysten",
+  "version": "1.0.0",
+  "website": "https://formidling-langs-kysten.thomasclausen.dk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thomasclausen/nordsoen-oceanarium-formidling-langs-kysten.git"
+  },
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "cross-env ELEVENTY_ENV=dev eleventy --serve",
+    "build": "cross-env ELEVENTY_ENV=prod eleventy",
+    "seed": "cross-env ELEVENTY_ENV=seed eleventy"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^0.10.0",
+    "@11ty/eleventy-plugin-inclusive-language": "^1.0.0",
+    "autoprefixer": "^9.6.0",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^4.1.10",
+    "html-minifier": "^4.0.0",
+    "imagemin": "^7.0.1",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-pngquant": "^8.0.0",
+    "imagemin-svgo": "^7.1.0",
+    "imagemin-webp": "^5.1.0",
+    "postcss": "^7.0.17",
+    "postcss-import": "^12.0.1",
+    "postcss-preset-env": "^6.7.0",
+    "uglify-es": "^3.3.9",
+    "uglify-js": "^3.6.9"
+  },
+  "devDependencies": {
+    "cross-env": "5.2.0"
+  }
+}

@@ -1,0 +1,22 @@
+{% extends 'layouts/base.njk' %}
+
+{% block content %}
+	{% include 'partials/header.njk' %}
+
+	<div class="page-description">
+		<div class="description">
+			{{ content | safe }}
+		</div>
+	</div>
+
+	<div class="page-content">
+	</div>
+
+	{% include 'partials/site-intro.njk' %}
+
+	<div class="page-background" style="background-image:url({{ backgroundImage | url }})"></div>
+
+	<div class="overlay"></div>
+
+	{% include 'partials/footer.njk' %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% set pageTitle = metaTitle or title or site.title %}
+{% set pageDescription = metaDescription or site.description %}
+
+<title>{{ pageTitle }}</title>
+
+<meta name="description" content="{{ pageDescription }}" />
+{% if site.authorName %}
+	<meta name="author" content="{{ site.authorName }}" />
+{% endif %}
+
+<meta property="og:title" content="{{ pageTitle }}" />
+<meta property="og:description" content="{{ pageDescription }}" />
+{% if socialImage %}
+	<meta property="og:image" content="{{ socialImage }}" />
+{% endif %}
+<meta property="og:site_name" content="{{ site.title }}" />
+<meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+<meta property="og:type" content="website" />
+
+<meta name="twitter:description" content="{{ pageDescription }}" />
+{% if site.authorTwitterHandle %}
+	<meta name="twitter:creator" content="{{ site.authorTwitterHandle }}" />
+{% endif %}
+{% if socialImage %}
+	<meta name="twitter:image" content="{{ socialImage }}" />
+{% endif %}
+
+{% if site.authorEmail %}
+	<link rel="me" href="mailto:{{ site.authorEmail }}" />
+{% endif %}
+{% if site.authorTwitterHandle %}
+	<link rel="me" href="https://twitter.com/{{ site.authorTwitterHandle }}" />
+{% endif %}
+{% if site.authorGithubHandle %}
+	<link rel="me" href="https://github.com/{{ site.authorGithubHandle }}" />
+{% endif %}
+
+<meta name="robots" content="noindex,nofollow" />

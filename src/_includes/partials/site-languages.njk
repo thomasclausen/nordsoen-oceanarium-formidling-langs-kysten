@@ -1,0 +1,12 @@
+{% if languages.items %}
+	<nav class="site-language">
+		<button type="button" class="language-button" data-action="language-toggle"><img src="{{ '/assets/images/icon-globe.svg' | url }}" width="36" height="36" alt=""><br>Dansk</button>
+		<ul class="language-list">
+			{% for item in languages.items %}
+				<li>
+					<a href="{{ item.url }}">{{ item.title }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</nav>
+{% endif %}

@@ -1,0 +1,38 @@
+{% set pageTemplate = 'page-template-' + page.fileSlug %}
+
+{% if page.fileSlug === "" %}
+	{% set pageTemplate = 'page-template-home' %}
+{% endif %}
+
+<!DOCTYPE html>
+<html lang="da-DK">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="HandheldFriendly" content="False" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	{% include "partials/meta.njk" %}
+
+	<link rel="preload" href="{{ '/assets/webfonts/open-sans-v17-latin-400.woff2' | url }}" as="font" crossorigin />
+	<link rel="preload" href="{{ '/assets/webfonts/open-sans-v17-latin-400italic.woff2' | url }}" as="font" crossorigin />
+	<link rel="preload" href="{{ '/assets/webfonts/open-sans-v17-latin-700.woff2' | url }}" as="font" crossorigin />
+	<link rel="preload" href="{{ '/assets/webfonts/7f66852f-7add-4d4c-b084-9cbee931eddf.woff2' | url }}" as="font" crossorigin />
+	<link rel="preload" href="{{ '/assets/webfonts/d1b36a03-6976-42aa-939d-36bd23f2bf9b.woff2' | url }}" as="font" crossorigin />
+	<link rel="preload" href="{{ '/assets/webfonts/41b8ee6a-2404-4bcc-b44a-4b3216b09cdf.woff2' | url }}" as="font" crossorigin />
+	<link rel="preload" href="{{ '/assets/css/formidling-langs-kysten.min.css' | url }}" as="style" />
+	<link rel="preload" href="{{ '/assets/js/formidling-langs-kysten.min.js' | url }}" as="script" />
+
+	<link rel="stylesheet" href="{{ '/assets/css/formidling-langs-kysten.min.css' | url }}" />
+</head>
+
+<body {% if pageTemplate %}class="{{ pageTemplate }}"{% endif %}>
+<div class="site-wrapper" data-idle-timeout="{{ site.idleTimeout }}">
+	{% block content %}
+	{% endblock content %}
+</div>
+
+<script src="{{ '/assets/js/formidling-langs-kysten.min.js' | url }}" async></script>
+</body>
+
+</html>

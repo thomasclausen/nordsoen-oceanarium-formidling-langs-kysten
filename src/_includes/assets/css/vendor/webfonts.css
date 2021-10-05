@@ -1,0 +1,51 @@
+/* open-sans-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'),
+       url('../webfonts/open-sans-v17-latin-400.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../webfonts/open-sans-v17-latin-400.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-italic - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Open Sans Italic'), local('OpenSans-Italic'),
+       url('../webfonts/open-sans-v17-latin-400italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../webfonts/open-sans-v17-latin-400italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-700 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'),
+       url('../webfonts/open-sans-v17-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../webfonts/open-sans-v17-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@import url('http://fast.fonts.net/t/1.css?apiType=css&projectid=ce8a0c89-83e7-4340-8b92-154d8f536eb6');
+
+@font-face{
+  font-display: swap;
+  font-family: 'Briem Akademi W00 Light';
+  src: url("../webfonts/7f66852f-7add-4d4c-b084-9cbee931eddf.woff2") format("woff2"),
+       url("../webfonts/5ad65c49-c6e5-4eb4-b885-357c8ae51c44.woff") format("woff");
+}
+@font-face{
+  font-display: swap;
+  font-family: 'BriemAkademiW00-Medium';
+  src: url("../webfonts/d1b36a03-6976-42aa-939d-36bd23f2bf9b.woff2") format("woff2"),
+       url("../webfonts/9df96099-a1fc-4571-b75f-22629972bd23.woff") format("woff");
+}
+@font-face{
+  font-display: swap;
+  font-family: 'Briem Akademi W00 Bold';
+  src: url("../webfonts/41b8ee6a-2404-4bcc-b44a-4b3216b09cdf.woff2") format("woff2"),
+       url("../webfonts/b27f0ab4-676f-4e59-9342-fca0118e827a.woff") format("woff");
+}

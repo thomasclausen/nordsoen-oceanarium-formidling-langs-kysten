@@ -20,62 +20,32 @@
 
   // Idle
   let idleTime = 0;
-  let missedClicks = 0;
-  const siteWrapper = document.body.querySelector('.site-wrapper');
-  const idleTarget = parseInt(siteWrapper.getAttribute('data-idle-timeout')) || 60; // seconds
-  const missedTarget = parseInt(siteWrapper.getAttribute('data-missed-clicks')) || 3; // number of clicks
+  const idleTarget = parseInt(document.body.querySelector('.site-wrapper').getAttribute('data-idle-timeout')) || 60; // seconds
 
   const preventTimer = (event) => {
-    if (document.body.classList.contains('js-miss')) {
-      missedClicks = 0;
-    } else {
-      if (event.target === siteWrapper) {
-        missedClicks++;
-      } else {
-        missedClicks = 0;
-      }
-    }
-
-    if (document.body.classList.contains('js-idle')) {
-      // We got a overlay - reset timer
-      idleTime = 0;
-      document.body.classList.remove('js-idle');
-      missedClicks = 0;
-    }
-
-    if (missedClicks >= missedTarget) {
-      document.body.classList.add('js-miss');
-    } else {
-      document.body.classList.remove('js-miss');
-    }
+    idleTime = 0;
+    document.body.classList.remove('js-idle');
   };
 
   setInterval(() => {
     idleTime += 1000;
 
-    if (document.body.classList.contains('js-miss')) {
-      // We got a overlay - pause timer
-      idleTime = 0;
-    }
-
     if (document.body.classList.contains('js-modal-open')) {
-      if (idleTime > ((idleTarget * 1000) * 2)) {
-        document.body.classList.remove('js-modal-open');
-
-        const modals = document.querySelectorAll('.modal');
-        modals.forEach(modal => {
-          // Reset modal
-          gallery(modal.querySelector('.gallery'), 'reset');
-          // Reset tabs
-          tabsReset();
-        });
-
+      if (idleTime > ((idleTarget * 1000) * 2.5) && document.querySelector('.site-logo a')) {
+        window.location.href = document.querySelector('.site-logo a').href;
+      } else if (idleTime > ((idleTarget * 1000) * 2)) {
+        document.body.classList.remove('js-language-open');
+        document.body.classList.add('js-modal-pause');
         document.body.classList.add('js-idle');
       } else {
+        document.body.classList.remove('js-modal-pause');
         document.body.classList.remove('js-idle');
       }
     } else {
-      if (idleTime > (idleTarget * 1000)) {
+      if (idleTime > ((idleTarget * 1000) * 1.5) && document.querySelector('.site-logo a')) {
+        window.location.href = document.querySelector('.site-logo a').href;
+      } else if (idleTime > (idleTarget * 1000)) {
+        document.body.classList.remove('js-language-open');
         document.body.classList.add('js-idle');
       } else {
         document.body.classList.remove('js-idle');
@@ -83,18 +53,69 @@
     }
   }, 1000);
 
+  if (document.querySelector('.scroll-list')) {
+    document.querySelector('.scroll-list').addEventListener('scroll', preventTimer);
+  }
   document.addEventListener('click', preventTimer);
+
+  // Language
+  const languageOpen = (event) => {
+    event.preventDefault();
+
+    document.body.classList.add('js-language-open');
+  };
+
+  const languageButtonOpen = document.querySelectorAll('[data-action="language-open"]');
+  languageButtonOpen.forEach(element => {
+    element.addEventListener('click', languageOpen);
+  });
+
+  const languageClose = (event) => {
+    event.preventDefault();
+
+    document.body.classList.remove('js-language-open');
+  };
+
+  const languageButtonClose = document.querySelectorAll('[data-action="language-close"]');
+  languageButtonClose.forEach(element => {
+    element.addEventListener('click', languageClose);
+  });
+
+  const languageToggle = (event) => {
+    event.preventDefault();
+
+    document.body.classList.toggle('js-language-open');
+  };
+
+  const languageButtonToggle = document.querySelectorAll('[data-action="language-toggle"]');
+  languageButtonToggle.forEach(element => {
+    element.addEventListener('click', languageToggle);
+  });
+
+  // Link
+  const linkOpen = function (event) {
+    event.preventDefault();
+
+    const element = event.target.closest('.grid-item');
+    const href = element.getAttribute('data-target');
+
+    location.href = href;
+  };
+  const linkButtonOpen = document.querySelectorAll('[data-action*="link-open"]');
+  linkButtonOpen.forEach(element => {
+    element.addEventListener('click', linkOpen);
+  });
 
   // Modal + Overlay
   const modalOpen = (event) => {
     event.preventDefault();
 
     const element = event.target;
-    const modals = document.querySelectorAll('.modal');
     const target = document.getElementById(element.getAttribute('data-target'));
 
     document.body.classList.add('js-modal-open');
 
+    const modals = document.querySelectorAll('.modal');
     modals.forEach(modal => {
       if (modal === target) {
         modal.classList.add('js-active');
@@ -201,6 +222,7 @@
 
         media.querySelector('.image img').addEventListener('load', load);
         media.querySelector('.video video').addEventListener('loadeddata', load);
+        media.querySelector('.youtube iframe').addEventListener('load', load);
 
         media.querySelector('.video video').addEventListener('ended', () => {
           media.querySelector('.video video').classList.remove('js-playing');
@@ -224,7 +246,6 @@
         thumbnails.forEach(thumbnail => {
           thumbnail.addEventListener('click', change);
         });
-        thumbnails[0].classList.add('js-active');
       }
     }
   };
@@ -290,4 +311,70 @@
       });
     }, 300);
   };
+
+
+  // SCROLL + DRAG VARIABLES
+  const items = document.querySelectorAll('.grid-item');
+  let itemsWidth = 0;
+
+  items.forEach(element => {
+    itemsWidth += element.offsetWidth;
+  });
+
+
+  // OVERLAY
+  const overlayOpen = function (event) {
+    event.preventDefault();
+
+    const content = event.target.closest('.page-content');
+    const list = event.target.closest('.grid-list');
+    const element = event.target.closest('.grid-item');
+    const overlay = document.getElementById(event.target.getAttribute('data-target'));
+
+    document.body.classList.add('js-overlay-open');
+    element.classList.add('js-active');
+    overlay.classList.add('js-active');
+
+    overlay.style.clipPath = 'polygon(' + (element.getBoundingClientRect().left - overlay.getBoundingClientRect().left) + 'px ' + (element.getBoundingClientRect().top - overlay.getBoundingClientRect().top) + 'px, ' + (element.getBoundingClientRect().left - overlay.getBoundingClientRect().left + element.getBoundingClientRect().width) + 'px ' + (element.getBoundingClientRect().top - overlay.getBoundingClientRect().top) + 'px, ' + (element.getBoundingClientRect().left - overlay.getBoundingClientRect().left + element.getBoundingClientRect().width) + 'px ' + (element.getBoundingClientRect().top - overlay.getBoundingClientRect().top + element.getBoundingClientRect().height) + 'px, ' + (element.getBoundingClientRect().left - overlay.getBoundingClientRect().left) + 'px ' + (element.getBoundingClientRect().top - overlay.getBoundingClientRect().top + element.getBoundingClientRect().height) + 'px)';
+
+    setTimeout(function () {
+      overlay.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+    }, 50);
+  };
+  const overlayButtonOpen = document.querySelectorAll('[data-action*="overlay-open"]');
+  overlayButtonOpen.forEach(element => {
+    element.addEventListener('click', overlayOpen);
+  });
+  const overlayClose = function (event) {
+    event.preventDefault();
+
+    const element = document.querySelector('.grid-item.js-active');
+    const overlay = event.target.closest('.grid-overlay');
+
+    document.body.classList.remove('js-overlay-open');
+    element.classList.remove('js-active');
+    overlay.classList.remove('js-active');
+
+    overlay.style.clipPath = 'polygon(' + (element.getBoundingClientRect().left - overlay.getBoundingClientRect().left) + 'px ' + (element.getBoundingClientRect().top - overlay.getBoundingClientRect().top) + 'px, ' + (element.getBoundingClientRect().left - overlay.getBoundingClientRect().left + element.getBoundingClientRect().width) + 'px ' + (element.getBoundingClientRect().top - overlay.getBoundingClientRect().top) + 'px, ' + (element.getBoundingClientRect().left - overlay.getBoundingClientRect().left + element.getBoundingClientRect().width) + 'px ' + (element.getBoundingClientRect().top - overlay.getBoundingClientRect().top + element.getBoundingClientRect().height) + 'px, ' + (element.getBoundingClientRect().left - overlay.getBoundingClientRect().left) + 'px ' + (element.getBoundingClientRect().top - overlay.getBoundingClientRect().top + element.getBoundingClientRect().height) + 'px)';
+  };
+  const overlayButtonClose = document.querySelectorAll('[data-action*="overlay-close"]');
+  overlayButtonClose.forEach(element => {
+    element.addEventListener('click', overlayClose);
+  });
+
+
+
+
+
+  /* ==== GALLERY ==== */
+  function galleryImage(event) {
+    event.preventDefault();
+    const element = event.target;
+
+    document.getElementById(element.getAttribute('data-target')).querySelector('img').src = element.getAttribute('data-image-large');
+  }
+  const galleryImageToggle = document.querySelectorAll('[data-action="gallery-image"]');
+  galleryImageToggle.forEach(element => {
+    element.addEventListener('click', galleryImage);
+  });
 })();

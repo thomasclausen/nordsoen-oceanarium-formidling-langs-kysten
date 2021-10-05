@@ -1,0 +1,126 @@
+{% if birdList %}
+	{% for bird in birdList %}
+		{% for position in bird.positions %}
+			<div class="bird" style="height: {{ position.height }}; left: {{ position.positionX }}; top: {{ position.positionY }}; width: {{ position.width }}" data-action="modal-open" data-target="modal-{{ bird.latin | replace(" ", "-") | lower }}">
+				{% if position.video %}
+					<video autoplay loop muted>
+						<source src="{{ position.video | url }}" type="video/webm">
+					</video>
+				{% endif %}
+			</div>
+		{% endfor %}
+
+		<div id="modal-{{ bird.latin | replace(" ", "-") | lower }}" class="modal">
+			<div class="tabs">
+				<nav class="tab-navigation">
+					<ul>
+						<li class="tab-button js-active" data-action="tab-open" data-target="modal-{{ bird.latin | replace(" ", "-") | lower }}-tab-content-description">Beskrivelse</li>
+						{% if bird.breeding %}
+							<li class="tab-button" data-action="tab-open" data-target="modal-{{ bird.latin | replace(" ", "-") | lower }}-tab-content-breeding-conditions">Yngleforhold</li>
+						{% endif %}
+						{% if bird.winter %}
+							<li class="tab-button" data-action="tab-open" data-target="modal-{{ bird.latin | replace(" ", "-") | lower }}-tab-content-during-winter">Om vinteren</li>
+						{% endif %}
+					</ul>
+				</nav>
+				<div id="modal-{{ bird.latin | replace(" ", "-") | lower }}-tab-content-description" class="tab-content columns js-active">
+					<div class="colum column-left">
+						{% if bird.description.gallery %}
+							<div class="gallery">
+								<div class="gallery-media" data-type="image">
+									<div class="image">
+										<img src="{{ bird.description.gallery[0].image | url }}" width="790" height="770" alt="" />
+									</div>
+									<div class="video">
+										<video src="" width="790" height="593" loop></video>
+										<button class="video-play" data-action="video-play"></button>
+									</div>
+								</div>
+								{% if bird.description.gallery.length > 1 %}
+									<nav class="gallery-navigation">
+										<ul>
+											{% for gallery in bird.description.gallery %}
+												{% if gallery.image %}
+													<li class="gallery-thumbnail image" data-type="image" data-source="{{ gallery.image | url }}"><img src="{{ gallery.thumbnail | url }}" width="340" height="300" alt=""></li>
+												{% endif %}
+												{% if gallery.video %}
+													<li class="gallery-thumbnail video" data-type="video" data-source="{{ gallery.video | url }}"><img src="{{ gallery.thumbnail | url }}" width="340" height="300" alt=""></li>
+												{% endif %}
+											{% endfor %}
+										</ul>
+									</nav>
+								{% endif %}
+							</div>
+						{% endif %}
+					</div>
+					<div class="colum column-right">
+						<h1>{{ bird.name }}</h1>
+						<h2>{{ bird.latin }}</h2>
+						{{ bird.description.text | safe }}
+
+						<!--
+						<div class="bird-data">
+							<div class="length">
+								<img src="{{ "/assets/images/icon-length.svg" | url }}" width="72" height="48" alt="" /><br />
+								L&aelig;ngde:<br />
+								{{ bird.description.data.length }}
+							</div>
+							<div class="wingspan">
+								<img src="{{ "/assets/images/icon-wingspan.svg" | url }}" width="72" height="48" alt="" /><br />
+								Vingefang:<br />
+								{{ bird.description.data.wingspan }}
+							</div>
+							<div class="weight">
+								<img src="{{ "/assets/images/icon-weight.svg" | url }}" width="72" height="48" alt="" /><br />
+								V&aelig;gt:<br />
+								{{ bird.description.data.weight }}
+							</div>
+							<div class="age">
+								<img src="{{ "/assets/images/icon-age.svg" | url }}" width="72" height="48" alt="" /><br />
+								Alder:<br />
+								{{ bird.description.data.age }}
+							</div>
+							<div class="food">
+								<img src="{{ "/assets/images/icon-food.svg" | url }}" width="72" height="48" alt="" /><br />
+								F&oslash;de:<br />
+								{{ bird.description.data.food }}
+							</div>
+						</div>
+						-->
+					</div>
+				</div>
+				{% if bird.breeding %}
+					<div id="modal-{{ bird.latin | replace(" ", "-") | lower }}-tab-content-breeding-conditions" class="tab-content columns">
+						<div class="colum column-left">
+							<div class="gallery">
+								<div class="gallery-media">
+									<img src="{{ bird.breeding.image }}" width="790" height="770" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="colum column-right">
+							<h1>{{ bird.breeding.heading }}</h1>
+							{{ bird.breeding.text | safe }}
+						</div>
+					</div>
+				{% endif %}
+				{% if bird.winter %}
+					<div id="modal-{{ bird.latin | replace(" ", "-") | lower }}-tab-content-during-winter" class="tab-content columns">
+						<div class="colum column-left">
+							<div class="gallery">
+								<div class="gallery-media">
+									<img src="{{ bird.winter.image }}" width="790" height="770" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="colum column-right">
+							<h1>{{ bird.winter.heading }}</h1>
+							{{ bird.winter.text | safe }}
+						</div>
+					</div>
+				{% endif %}
+			</div>
+			<button class="close" data-action="modal-close">Tilbage</button>
+		</div>
+	{% endfor %}
+{% endif %}

@@ -10,7 +10,16 @@
 	</div>
 
 	<div class="page-content">
+		{% if slug == "hirtshals" -%}
+			{% set locationList = locations.hirtshals %}
+		{%- endif %}
+		{% if slug == "hanherred" -%}
+			{% set locationList = locations.hanherred %}
+		{%- endif %}
+		{% include 'partials/location-list.njk' %}
 	</div>
+
+	{% include 'partials/footer.njk' %}
 
 	{% include 'partials/site-intro.njk' %}
 
@@ -18,5 +27,7 @@
 
 	<div class="overlay"></div>
 
-	{% include 'partials/footer.njk' %}
+	<audio loop>
+		<source src="{{ '/assets/media/harbour.mp3' | url }}" type="audio/mpeg" />
+	</audio>
 {% endblock %}

@@ -1,6 +1,7 @@
 ---
 title: Han Herred
 backgroundImage: /assets/images/background-han-herred.jpg
+slug: han-herred
 ---
 # Han Herred
 

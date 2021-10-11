@@ -1,6 +1,7 @@
 ---
 title: Lønstrup
 backgroundImage: /assets/images/background-loenstrup.jpg
+slug: loenstrup
 ---
 # Lønstrup
 

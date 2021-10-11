@@ -1,6 +1,7 @@
 ---
 title: Hirtshals fyr
 backgroundImage: /assets/images/background-hirtshals-fyr.jpg
+slug: hirtshals-fyr
 ---
 # Hirtshals fyr
 

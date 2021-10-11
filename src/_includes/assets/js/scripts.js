@@ -64,7 +64,6 @@
 
     document.body.classList.add('js-language-open');
   };
-
   const languageButtonOpen = document.querySelectorAll('[data-action="language-open"]');
   languageButtonOpen.forEach(element => {
     element.addEventListener('click', languageOpen);
@@ -75,7 +74,6 @@
 
     document.body.classList.remove('js-language-open');
   };
-
   const languageButtonClose = document.querySelectorAll('[data-action="language-close"]');
   languageButtonClose.forEach(element => {
     element.addEventListener('click', languageClose);
@@ -86,7 +84,6 @@
 
     document.body.classList.toggle('js-language-open');
   };
-
   const languageButtonToggle = document.querySelectorAll('[data-action="language-toggle"]');
   languageButtonToggle.forEach(element => {
     element.addEventListener('click', languageToggle);
@@ -124,7 +121,6 @@
       }
     });
   };
-
   const modalButtonOpen = document.querySelectorAll('[data-action="modal-open"]');
   modalButtonOpen.forEach(element => {
     element.addEventListener('click', modalOpen);
@@ -145,7 +141,6 @@
       tabsReset();
     });
   };
-
   const modalButtonClose = document.querySelectorAll('[data-action="modal-close"]');
   modalButtonClose.forEach(element => {
     element.addEventListener('click', modalClose);
@@ -281,7 +276,6 @@
       }
     });
   };
-
   const tabButtonOpen = document.querySelectorAll('[data-action="tab-open"]');
   tabButtonOpen.forEach(element => {
     element.addEventListener('click', tabOpen);

@@ -2,6 +2,8 @@
 title: Hirtshals fyr
 backgroundImage: /assets/images/background-hirtshals-fyr.jpg
 slug: hirtshals-fyr
+eleventyNavigation:
+  key: Hirtshals fyr
 ---
 # Hirtshals fyr
 

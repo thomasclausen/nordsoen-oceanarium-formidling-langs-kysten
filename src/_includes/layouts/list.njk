@@ -1,0 +1,58 @@
+{% extends 'layouts/base.njk' %}
+
+{% set subpages = collections.all | eleventyNavigation %}
+
+{% block content %}
+	{% include 'partials/header.njk' %}
+
+	<div class="page-description">
+		{% if page.url !== "/han-herred/" %}
+			<a href="/han-herred/" class="back-link">Tilbage</a>
+		{% endif %}
+		{% if page.url !== "/hirtshals-fyr/" %}
+			<a href="/hirtshals-fyr/" class="back-link">Tilbage</a>
+		{% endif %}
+		{% if page.url !== "/loenstrup/" %}
+			<a href="/loenstrup/" class="back-link">Tilbage</a>
+		{% endif %}
+
+		<div class="description">
+			{{ content | safe }}
+		</div>
+	</div>
+
+	<div class="page-content">
+		{% macro renderNavListItem(entry) -%}
+			{% if entry.url == page.url %}
+				{% for child in entry.children %}
+					<div class="grid-item" data-action="link-open" data-target="{{ child.url }}">
+						<div class="background" style="background-image:url({{ child.image }})"></div>
+						<div class="heading">{{ child.title }}</div>
+					</div>
+				{% endfor %}
+			{% endif %}
+
+			{%- for child in entry.children -%}
+				{{ renderNavListItem(child) }}
+			{%- endfor -%}
+		{%- endmacro %}
+
+		<div class="grid-list scroll-list">
+			{%- for subpage in subpages -%}
+				{{ renderNavListItem(subpage) }}
+			{%- endfor -%}
+		</div>
+	</div>
+
+	{% include 'partials/footer.njk' %}
+
+	{% include 'partials/site-intro.njk' %}
+
+	<div class="page-background" style="background-image:url({{ backgroundImage | url }})"></div>
+
+	<div class="overlay"></div>
+
+	<audio loop>
+		<source src="{{ '/assets/media/harbour.mp3' | url }}" type="audio/mpeg" />
+	</audio>
+{% endblock %}

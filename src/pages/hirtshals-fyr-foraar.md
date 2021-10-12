@@ -2,6 +2,11 @@
 title: Hvad kan jeg se om foråret ved Hirtshals fyr?
 backgroundImage: /assets/images/background-hirtshals-fyr.jpg
 slug: /hirtshals-fyr/hvad-kan-jeg-se/foraar
+eleventyNavigation:
+  key: Forår
+  parent: Hvad kan jeg se
+  order: 1
+  image: /assets/images/foraar.jpg
 ---
 # Forår - Marts, april, maj
 

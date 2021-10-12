@@ -9,6 +9,7 @@ const markdownFilter = require('./src/utils/filters/markdown.js'); //
 const htmlTransform = require('./src/utils/transforms/minify-html.js');
 
 // Import plugins
+const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const inclusiveLanguage = require('@11ty/eleventy-plugin-inclusive-language');
 const markdown = require('markdown-it');
 
@@ -27,6 +28,7 @@ module.exports = (eleventyConfig) => {
   // Add layout aliases
   eleventyConfig.addLayoutAlias('default', 'layouts/base.njk');
   eleventyConfig.addLayoutAlias('page', 'layouts/page.njk');
+  eleventyConfig.addLayoutAlias('list', 'layouts/list.njk');
 
   // Add filters
   eleventyConfig.addFilter('markdownFilter', markdownFilter);
@@ -41,6 +43,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy('./src/assets/webfonts');
 
   // Add plugins
+  eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(inclusiveLanguage, {
     words: 'ganske enkelt, helt enkelt, åbenlyst, tydeligvis, stort set, dybest set, selvfølgelig, klart, helt klart, bare, alle ved, ved alle, dog, let'
   });

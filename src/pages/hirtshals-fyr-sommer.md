@@ -2,6 +2,11 @@
 title: Hvad kan jeg se om sommeren ved Hirtshals fyr?
 backgroundImage: /assets/images/background-hirtshals-fyr.jpg
 slug: /hirtshals-fyr/hvad-kan-jeg-se/sommer
+eleventyNavigation:
+  key: Sommer
+  parent: Hvad kan jeg se
+  order: 2
+  image: /assets/images/sommer.jpg
 ---
 # Sommer - Juni, juli, august
 

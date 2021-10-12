@@ -2,6 +2,8 @@
 title: Han Herred
 backgroundImage: /assets/images/background-han-herred.jpg
 slug: han-herred
+eleventyNavigation:
+  key: Han Herred
 ---
 # Han Herred
 

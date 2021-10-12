@@ -2,6 +2,11 @@
 title: Hvad kan jeg se om vinteren ved Hirtshals fyr?
 backgroundImage: /assets/images/background-hirtshals-fyr.jpg
 slug: /hirtshals-fyr/hvad-kan-jeg-se/vinter
+eleventyNavigation:
+  key: Vinter
+  parent: Hvad kan jeg se
+  order: 4
+  image: /assets/images/vinter.jpg
 ---
 # Vinter - December, januar, februar
 

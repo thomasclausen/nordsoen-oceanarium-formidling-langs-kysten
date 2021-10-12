@@ -5,18 +5,14 @@
 
 	<div class="page-description">
 		<div class="description">
-			{{ content | safe }}
+			<a href="/han-herred" class="back-link">Tilbage</a>
 		</div>
 	</div>
 
 	<div class="page-content">
-		{% if slug == "hirtshals" -%}
-			{% set locationList = locations.hirtshals %}
-		{%- endif %}
-		{% if slug == "hanherred" -%}
-			{% set locationList = locations.hanherred %}
-		{%- endif %}
-		{% include 'partials/location-list.njk' %}
+		<div class="page-information">
+			{{ content | safe }}
+		</div>
 	</div>
 
 	{% include 'partials/footer.njk' %}

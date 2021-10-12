@@ -1,4 +1,4 @@
 {
-  "layout": "page",
+  "layout": "list",
   "permalink": "{{ slug }}/index.html"
 }

@@ -1,11 +1,19 @@
 {% extends 'layouts/base.njk' %}
 
+{% set backURL = "/" %}
+{% if page.url.substring(0, page.url.length - 1).lastIndexOf("/") > "0" %}
+	{% set backURL = page.url.substring(0, page.url.substring(0, page.url.length - 1).lastIndexOf("/")) + "/" %}
+{% endif %}
+
 {% block content %}
 	{% include 'partials/header.njk' %}
 
 	<div class="page-description">
+		{% if backURL !== "/" %}
+			<a href="{{ backURL }}" class="back-link">Tilbage</a>
+		{% endif %}
+
 		<div class="description">
-			<a href="/han-herred" class="back-link">Tilbage</a>
 		</div>
 	</div>
 

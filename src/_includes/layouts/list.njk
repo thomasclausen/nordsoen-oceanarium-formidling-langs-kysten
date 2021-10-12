@@ -2,18 +2,17 @@
 
 {% set subpages = collections.all | eleventyNavigation %}
 
+{% set backURL = "/" %}
+{% if page.url.substring(0, page.url.length - 1).lastIndexOf("/") > "0" %}
+	{% set backURL = page.url.substring(0, page.url.substring(0, page.url.length - 1).lastIndexOf("/")) + "/" %}
+{% endif %}
+
 {% block content %}
 	{% include 'partials/header.njk' %}
 
 	<div class="page-description">
-		{% if page.url !== "/han-herred/" %}
-			<a href="/han-herred/" class="back-link">Tilbage</a>
-		{% endif %}
-		{% if page.url !== "/hirtshals-fyr/" %}
-			<a href="/hirtshals-fyr/" class="back-link">Tilbage</a>
-		{% endif %}
-		{% if page.url !== "/loenstrup/" %}
-			<a href="/loenstrup/" class="back-link">Tilbage</a>
+		{% if backURL !== "/" %}
+			<a href="{{ backURL }}" class="back-link">Tilbage</a>
 		{% endif %}
 
 		<div class="description">

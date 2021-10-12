@@ -8,6 +8,7 @@ eleventyNavigation:
   order: 1
   image: /assets/images/foraar.jpg
 ---
-# Forår - Marts, april, maj
+<h1>Forår<br />
+Marts, april, maj</h1>
 
 Når det bliver forår begynder dyrelivet at røre på sig. Her kan du se, hvilke arter du kan finde ved fyret om foråret.

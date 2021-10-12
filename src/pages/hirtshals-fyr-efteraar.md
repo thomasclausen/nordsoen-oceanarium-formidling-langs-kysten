@@ -8,6 +8,7 @@ eleventyNavigation:
   order: 3
   image: /assets/images/efteraar.jpg
 ---
-# Efterår - September, oktober, november
+<h1>Efterår<br />
+September, oktober, november</h1>
 
 Efteråret ved fyret kan byde på mange forskellige fuglearter bl.a. tejst, sortand, lom på deres træk syd på.

@@ -8,6 +8,7 @@ eleventyNavigation:
   order: 4
   image: /assets/images/vinter.jpg
 ---
-# Vinter - December, januar, februar
+<h1>Vinter<br />
+December, januar, februar</h1>
 
 I vinterperioden kan du opleve flere hundrede edderfugle, som raster tæt på kysten ved fyret.

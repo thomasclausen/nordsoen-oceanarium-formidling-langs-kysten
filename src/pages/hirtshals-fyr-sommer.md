@@ -8,6 +8,7 @@ eleventyNavigation:
   order: 2
   image: /assets/images/sommer.jpg
 ---
-# Sommer - Juni, juli, august
+<h1>Sommer<br />
+Juni, juli, august</h1>
 
 Midt på sommeren kan du opleve ynglende fugle og et farverigt blomsterflor. Du kan også være heldig at finde hugorme, firben og sommerfugle.
